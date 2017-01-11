@@ -1,0 +1,69 @@
+@import 'normalize.css';
+@import 'index.css';
+
+$light_grey: #ccc;
+
+.autoprefixer {
+  display: flex;
+}
+
+.cssnext {
+  background: color(red alpha(-10%));
+}
+
+.precss {
+  @if 3 < 5 {
+    background: green;
+  }
+  @else {
+    background: $light_grey;
+  }
+}
+
+.opaque {
+  opacity: 0.5;
+  color: red;
+
+  &::after{
+    content: 'can you see me?';
+  }
+
+  .test {
+    content: "1/1/1980";
+    @dynamicDateContent
+  }
+}
+
+.parent::before {
+  content: 'Testing';
+}
+
+.parent::after {
+  content: 'pseudo elements';
+}
+
+.willChange {
+  will-change: transform;
+}
+
+.animated {
+  animation: animationAction 2s;
+  display: flex;
+}
+
+@mixin displayMixin animated, block;
+
+@keyframes animationAction {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 50%){
+  .opaque {
+    color: green;
+  }
+}

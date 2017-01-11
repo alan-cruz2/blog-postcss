@@ -1,0 +1,62 @@
+body {
+  background: #ccc;
+}
+
+.test {
+  background: black;
+  font-family: "Open Sans", fontstack("Arial");
+}
+
+/* PreCss */
+
+/* examples for for and each */
+
+@for $i from 1 to 5 {
+  li:nth-of-type($i) {
+    margin-top: calc(10 * $i);
+  }
+}
+
+$icons: edit, submit, delete, share, invite;
+
+@each $icon in ($icons){
+  .icon-$(icon) {
+    background-image: url('img/$(icon).png');
+  }
+}
+
+/* extends */
+@define-extend rounded {
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+/* mixins */
+@define-mixin fontIconMixin $icon, $size, $color {
+  .fontIcon-$(icon) {
+    font-size: $size;
+    color: $color;
+    @extend rounded;
+    @mixin-content;
+  }
+}
+
+@define-mixin displayMixin $class, $display {
+  .$(class) {
+    display: $display;
+  }
+}
+
+@mixin fontIconMixin edit, 1.5rem, black {
+  text-decoration: underline;
+}
+
+@mixin fontIconMixin delete, 1.5rem, red;
+
+@mixin displayMixin hide, none;
+
+@media (max-width: 50%){
+  .test {
+    background: white;
+  }
+}
